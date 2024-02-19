@@ -1,13 +1,14 @@
-name: Build and Push Docker images to Docker Hub
+name: Build and Push Docker image to Docker Hub
 
 on:
-  push:
-    paths:
-      - .github/workflows/openems-ui.yml
+    push:
+      paths:
+        - .github/workflows/openems-ui.yml
+     
 
 jobs:
   push_to_registry:
-    name: Push Docker images to Docker Hub
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -19,16 +20,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
     
-      - name: Build and push Docker image for openems-ui
+      - name: OpenEMS-ui
         uses: docker/build-push-action@v5
         with:
           context: tools/docker/openems-ui
           push: true
           tags: manoj1210/openems-ui:latest
-      
-      - name: Build and push Docker image for openems-edge
+
+      - name: OpenEMS-edge
         uses: docker/build-push-action@v5
         with:
-          context: tools/docker/openems-edge
+          context: tools/docker/openems-backend
           push: true
-          tags: manoj1210/openems-edge:latest
+          tags: manoj1210/openems-backend:latest
