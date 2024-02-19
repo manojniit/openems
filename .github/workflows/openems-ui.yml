@@ -15,15 +15,15 @@ jobs:
       matrix:
         image: [openems-edge, openems-backend, openems-ui]
         include:
-          - image: edge
+          - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
-            repo: manojniit/edge
-          - image: backend
+            repo: manojniit/openems-backend
+          - image:  openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
-            repo: manojniit/backend
-          - image: ui
+            repo: manojniit/openems-backend
+          - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manojniit/ui
+            repo: manojniit/openems-backend
     permissions:
         packages: write
         contents: read
