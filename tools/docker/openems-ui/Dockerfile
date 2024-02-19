@@ -41,7 +41,7 @@ FROM ui_base
 RUN mkdir -p /etc/nginx/site-templates /var/log/nginx /var/www/html/openems
 
 COPY --from=build_ui /src/ui/ /opt/ui/src
-COPY tools/docker/openems-ui/root/ /
+COPY tools/docker/ui/root/ /
 
 VOLUME /etc/nginx
 VOLUME /var/log/nginx
