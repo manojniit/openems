@@ -13,17 +13,17 @@ jobs:
       # Reset later
       fail-fast: false
       matrix:
-        image: [edge, backend, ui]
+        image: [openems-edge, openems-backend, openems-ui]
         include:
           - image: edge
-            dockerfile: tools/docker/edge/Dockerfile
-            repo: manojniit/edge
+            dockerfile: tools/docker/openems-edge/Dockerfile
+            repo: manojniit/openems-edge
           - image: backend
-            dockerfile: tools/docker/backend/Dockerfile
-            repo: manojniit/backend
+            dockerfile: tools/docker/openems-backend/Dockerfile
+            repo: manojniit/openems-backend
           - image: ui
-            dockerfile: tools/docker/ui/Dockerfile
-            repo: manojniit/ui
+            dockerfile: tools/docker/openems-ui/Dockerfile
+            repo: manojniit/openems-ui
     permissions:
         packages: write
         contents: read
