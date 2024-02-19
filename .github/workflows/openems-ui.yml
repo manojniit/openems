@@ -67,9 +67,9 @@ jobs:
             ghcr.io/${{ matrix.repo }}
 #            ${{ matrix.repo }}
           labels: |
-            org.opencontainers.image.authors=manoj1210
-            org.opencontainers.image.title=manoj1210 ${{ matrix.image }}
-            org.opencontainers.image.vendor=manoj1210
+            org.opencontainers.image.authors=manojniit
+            org.opencontainers.image.title=manojniit ${{ matrix.image }}
+            org.opencontainers.image.vendor=manojniit
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
