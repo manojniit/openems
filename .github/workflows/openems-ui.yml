@@ -2,8 +2,11 @@ name: Build OpenEMS Docker Image
 
 on:
   push:
-    paths:
-      - .github/workflows/openems-ui.yml
+    branches:
+      - main
+      - 'workflow/**'
+    tags:
+      - "*.*.*"
 
 jobs:
   docker:
@@ -12,17 +15,17 @@ jobs:
       # Reset later
       fail-fast: false
       matrix:
-        image: [openems-edge, openems-backend, openems-ui]
+        image: [edge, backend, ui]
         include:
           - image: edge
-            dockerfile: tools/docker/openems-edge/Dockerfile
-            repo: manojniit/openems-edge
+            dockerfile: tools/docker/edge/Dockerfile
+            repo: manojniit/edge
           - image: backend
-            dockerfile: tools/docker/openems-backend/Dockerfile
-            repo: manojniit/openems-backend
+            dockerfile: tools/docker/backend/Dockerfile
+            repo: manojniit/backend
           - image: ui
-            dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manojniit/openems-ui
+            dockerfile: tools/docker/ui/Dockerfile
+            repo: manojniit/ui
     permissions:
         packages: write
         contents: read
@@ -42,12 +45,11 @@ jobs:
         run: |
           REF_NAME=$(echo "${{ github.ref }}" | sed -e 's/refs\/heads\///' -e 's/refs\/tags\///' -e 's/release\/v//')
           echo "branch=${REF_NAME}-test" >> "$GITHUB_OUTPUT"
-
-      #- name: Login to Docker Hub
-      #  uses: docker/login-action@v3
-      #  with:
-      #    username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #    password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      - name: Login to Docker Hub
+#        uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -67,8 +69,7 @@ jobs:
             org.opencontainers.image.authors=manojniit
             org.opencontainers.image.title=manojniit ${{ matrix.image }}
             org.opencontainers.image.vendor=manojniit
-
-      - name: Build and push Docker image
+      - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
           file: ${{ matrix.dockerfile }}
