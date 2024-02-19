@@ -1,12 +1,11 @@
 name: Build OpenEMS
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
   push:
-    paths:
-      - .github/workflows/build.yml
-      - '**/*.java'
-      - '**/*.gradle'
-      - '**/*.ts'
-      - '**/*.html'
+    branches:
+      - main
+      - develop
   
 jobs:
   build-java:
