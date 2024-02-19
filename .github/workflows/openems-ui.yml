@@ -17,13 +17,13 @@ jobs:
         include:
           - image: edge
             dockerfile: tools/docker/openems-edge/Dockerfile
-            repo: manojniit/openems-edge
+            repo: manojniit/edge
           - image: backend
             dockerfile: tools/docker/openems-backend/Dockerfile
-            repo: manojniit/openems-backend
+            repo: manojniit/backend
           - image: ui
             dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manojniit/openems-ui
+            repo: manojniit/ui
     permissions:
         packages: write
         contents: read
