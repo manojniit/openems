@@ -22,6 +22,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: tools/docker/openems-ui
+          context: tools/docker/openems-ui/
           push: true
           tags: manoj1210/testdemo:latest
