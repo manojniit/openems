@@ -2,9 +2,8 @@ name: Build and Push Docker image to Docker Hub
 
 on:
     push:
-      branches:
-        - main
-        - 'workflow/**'
+      paths:
+        - .github/workflows/openems-ui.yml
      
 
 jobs:
