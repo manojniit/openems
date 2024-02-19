@@ -5,8 +5,7 @@ on:
       branches:
         - main
         - 'workflow/**'
-      tags:
-        - "*.*.*"
+     
 
 jobs:
   push_to_registry:
