@@ -68,7 +68,7 @@ jobs:
             org.opencontainers.image.title=manojniit ${{ matrix.image }}
             org.opencontainers.image.vendor=manojniit
 
-      - name: Build and push Docker images
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           file: ${{ matrix.dockerfile }}
