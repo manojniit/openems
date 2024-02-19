@@ -39,7 +39,7 @@ FROM base_container
 RUN mkdir -p /opt/openems /var/opt/openems/config /var/opt/openems/data
 
 COPY --from=build_backend /opt /opt/openems
-COPY tools/docker/backend/root/ /
+COPY tools/docker/openems-backend/root/ /
 
 VOLUME /var/opt/openems/config
 VOLUME /var/opt/openems/data
