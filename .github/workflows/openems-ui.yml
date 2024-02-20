@@ -15,13 +15,13 @@ jobs:
         include:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
-            repo: manojniit/openems-edge
+            repo: manoj1210/openems-edge
           - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
-            repo: manojniit/openems-backend
+            repo: manoj1210/openems-backend
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manojniit/openems-ui
+            repo: manoj1210/openems-ui
 
     steps:
       - name: Checkout
