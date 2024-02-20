@@ -43,4 +43,6 @@ COPY tools/docker/openems-edge/root/ /
 VOLUME /var/opt/openems/config
 VOLUME /var/opt/openems/data
 
-EXPOSE 8080
+ENV NGINX_PORT=8080
+
+EXPOSE $NGINX_PORT
