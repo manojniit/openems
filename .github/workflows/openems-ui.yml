@@ -4,13 +4,11 @@ on:
   push:
     paths:
       - .github/workflows/openems-ui.yml
-    
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     strategy:
-      # Reset later
       fail-fast: false
       matrix:
         image: [openems-edge, openems-backend, openems-ui]
@@ -18,26 +16,23 @@ jobs:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
             repo: manojniit/openems-edge
-          - image:  openems-backend
+          - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manojniit/openems-backend
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manojniit/openems-ui
-    permissions:
-        packages: write
-        contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        
+
       - name: Get cleaned branch name
         id: clean_name
         run: |
