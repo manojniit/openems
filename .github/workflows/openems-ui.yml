@@ -17,13 +17,13 @@ jobs:
         include:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
-            repo: manojniit/openems-backend
+            repo: manojniit/openems-edge
           - image:  openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manojniit/openems-backend
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manojniit/openems-backend
+            repo: manojniit/openems-ui
     permissions:
         packages: write
         contents: read
@@ -63,7 +63,6 @@ jobs:
         with:
           images: |
             ghcr.io/${{ matrix.repo }}
-#            ${{ matrix.repo }}
           labels: |
             org.opencontainers.image.authors=manojniit
             org.opencontainers.image.title=manojniit ${{ matrix.image }}
