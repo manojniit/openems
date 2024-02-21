@@ -18,7 +18,7 @@ FROM --platform=$BUILDPLATFORM ui_builder AS build_ui
 ARG UI_VERSION
 
 COPY ./ /src
-COPY tools/docker/ui-backend/src /src
+#COPY tools/docker/ui-backend /src
 
 WORKDIR /src/ui
 RUN npm install
