@@ -1,0 +1,6 @@
+{
+    "java.project.sourcePaths": [
+        "io.openems.backend.uiwebsocket/src",
+        "io.openems.edge.timeofusetariff.entsoe"
+    ]
+}

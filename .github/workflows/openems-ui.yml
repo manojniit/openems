@@ -22,7 +22,20 @@ jobs:
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
-
+            
+    services:
+      ui-backend:
+        image: manoj1210/openems-ui
+        ports:
+          - 80:80
+          - 443:443
+          - 8082:8082
+      ui-edge:
+        image: manoj1210/openems-ui
+        ports:
+          - 80:80
+          - 443:443
+          - 8082:8082
     steps:
       - name: Checkout
         uses: actions/checkout@v4
