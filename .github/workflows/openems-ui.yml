@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [openems-edge, openems-backend, openems-ui]
+        image: [openems-edge, openems-backend, openems-ui, ui-backend, ui-edge]
         include:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
@@ -22,20 +22,15 @@ jobs:
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
-            
-    services:
-      ui-backend:
-        image: manoj1210/openems-ui
-        ports:
-          - 80:80
-          - 443:443
-          - 8082:8082
-      ui-edge:
-        image: manoj1210/openems-ui
-        ports:
-          - 80:80
-          - 443:443
-          - 8082:8082
+          - image: ui-backend
+            dockerfile: tools/docker/ui-backend/Dockerfile
+            repo: manoj1210/ui-backend
+          - image: openems-ui
+            dockerfile: tools/docker/ui-backend/Dockerfile
+            repo: manoj1210/ui-backend
+
+  
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
