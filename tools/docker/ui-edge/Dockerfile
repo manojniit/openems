@@ -18,7 +18,7 @@ FROM --platform=$BUILDPLATFORM ui_builder AS build_ui
 ARG UI_VERSION
 
 COPY ./ /src
-COPY tools/docker/openems-ui/src /src
+COPY tools/docker/ui-edge/src /src
 
 WORKDIR /src/ui
 RUN npm install
@@ -38,7 +38,7 @@ RUN apk add --no-cache \
 FROM ui_base
 
 COPY --from=build_ui /src/ui/target /app/www
-COPY tools/docker/openems-ui/root/ /
+COPY tools/docker/ui-edge/root/ /
 
 RUN mkdir -p /config /log
 
