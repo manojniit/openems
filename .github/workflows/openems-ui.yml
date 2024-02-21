@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - .github/workflows/openems-ui.yml
-
       
 jobs:
   docker:
