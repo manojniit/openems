@@ -86,18 +86,16 @@ jobs:
 
   reverse-proxy:
     runs-on: ubuntu-latest
-    container: debian:bullseye
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    services:
+      reverse-proxy:
+        image: nginx
+        #container_name: reverse_proxy_demo
+       # depends_on: [openems-edge, openems-backend, openems-ui, ui-backend, ui-edge]
+        volumes:
+          - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+          - 80:80
 
-      - name: Build and Run Reverse Proxy Container
-        run: |
-          docker run -d \
-            --name reverse_proxy_demo \
-            --network host \
-            -v "$(pwd)/reverse_proxy/nginx.conf:/etc/nginx/nginx.conf" \
-            -p 80:80 \
-            nginx:1.25.4
+
 
     
