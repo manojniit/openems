@@ -16,28 +16,21 @@ jobs:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
             repo: manoj1210/openems-edge
-              HOST=localhost
-              WEBSOCKET_PORT=8082
           - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manoj1210/openems-backend
-              HOST=localhost
-              WEBSOCKET_PORT=8082
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
-              HOST=localhost
-              WEBSOCKET_PORT=8082
+            args: HOST=localhost, WEBSOCKET_PORT=8082  
           - image: ui-backend
             dockerfile: tools/docker/ui-backend/Dockerfile
             repo: manoj1210/ui-backend
-              HOST=localhost
-              WEBSOCKET_PORT=8082
+            args: HOST=localhost, WEBSOCKET_PORT=8082 
           - image: ui-edge
             dockerfile: tools/docker/ui-edge/Dockerfile
             repo: manoj1210/ui-edge
-              HOST=localhost
-              WEBSOCKET_PORT=8082
+            args: HOST=localhost, WEBSOCKET_PORT=8082 
 
     steps:
       - name: Checkout
