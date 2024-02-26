@@ -38,12 +38,13 @@ jobs:
 
     services:
       reverseproxy:
-        depends_on: [openems-edge, openems-backend, openems-ui, ui-backend, ui-edge]
         image: nginx
+        depends_on: [openems-edge, openems-backend, openems-ui, ui-backend, ui-edge]
         volumes: 
           - tools/docker/reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
         ports:
             - 80:80
+         
             
         
 
