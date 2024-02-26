@@ -45,4 +45,7 @@ RUN mkdir -p /config /log
 VOLUME /config
 VOLUME /log
 
+ARG HOST
+ARG WEBSOCKET_PORT
+
 EXPOSE 80 443
