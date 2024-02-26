@@ -16,9 +16,11 @@ jobs:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
             repo: manoj1210/openems-edge
+            args: HOST=localhost, WEBSOCKET_PORT=8080
           - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manoj1210/openems-backend
+            args: HOST=localhost, WEBSOCKET_PORT=8079
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
