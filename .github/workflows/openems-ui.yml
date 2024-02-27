@@ -90,8 +90,8 @@ jobs:
     needs: docker
     steps:
       - name: Check directory contents
-        run: 
-          - docker run -d -p 80:80 nginx
+        run: docker run -d -p 80:80 nginx
+          
 
     
  
