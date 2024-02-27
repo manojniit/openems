@@ -26,7 +26,7 @@ jobs:
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
-            args: HOST=localhost, WEBSOCKET_PORT=8082  
+            args: HOST=localhost, WEBSOCKET_PORT=80 
           - image: ui-backend
             dockerfile: tools/docker/ui-backend/Dockerfile
             repo: manoj1210/ui-backend
@@ -89,7 +89,7 @@ jobs:
     needs: docker
     steps:
       - name: Copy Nginx configuration
-        run: cp C:\Users\manoj.varikela\openems\tools\docker\reverse-proxy\nginx.conf /etc/nginx/nginx.conf
+        run: cp C:/Users/manoj.varikela/openems/tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
       - name: Expose Reverse Proxy
         run: docker run -d -p 80:80 nginx
 
