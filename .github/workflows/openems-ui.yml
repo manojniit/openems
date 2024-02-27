@@ -90,9 +90,7 @@ jobs:
     needs: docker
     steps:
       - name: Check directory contents
-        run: |
-          cp ./tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
-          docker run -d -p 80:80 nginx
+        run: docker run -d -p 80:80 nginx -v /tools/docker/openems-ui/nginx.conf:/etc/nginx/nginx.conf
 
     
  
