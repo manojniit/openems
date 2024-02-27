@@ -97,7 +97,7 @@ jobs:
       - name: Build and run reverse proxy container
         run: |
           docker build -t reverse-proxy -f tools/docker/reverse-proxy/Dockerfile .
-          docker run -d -p 80:80 -v /tools/docker/openems-ui/nginx.conf:/etc/nginx/nginx.conf reverse-proxy
+          docker run -d -p 80:80  reverse-proxy
 
 
     
