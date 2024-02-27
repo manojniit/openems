@@ -91,7 +91,7 @@ jobs:
       - name: Check directory contents
         run: ls -l ./reverse-proxy/
       - name: Copy Nginx configuration
-        run: COPY ./reverse-proxy/nginx.conf /etc/nginx/nginx.conf
+        run: cp tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
       - name: Expose Reverse Proxy
         run: docker run -d -p 80:80 nginx
 
