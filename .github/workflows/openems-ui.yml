@@ -74,6 +74,7 @@ jobs:
             org.opencontainers.image.authors=manoj1210
             org.opencontainers.image.title=manoj1210 ${{ matrix.image }}
             org.opencontainers.image.vendor=manoj1210
+      
             
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
@@ -93,7 +94,7 @@ jobs:
           - ls -l C:/Users/manoj.varikela/openems/tools/docker/reverse-proxy
           - cp C:/Users/manoj.varikela/openems/tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
           - docker run -d -p 80:80 nginx
-        
+
     
  
 
