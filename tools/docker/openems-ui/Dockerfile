@@ -36,7 +36,7 @@ RUN mkdir -p /etc/nginx/site-templates /var/log/nginx /var/www/html/openems
 COPY --from=build_ui /src/ui/ /opt/ui/src
 COPY tools/docker/openems-ui/root/ /
 
-COPY /nginx.conf /etc/nginx/nginx.conf
+COPY tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
 
 COPY --chown=root:root tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
 
