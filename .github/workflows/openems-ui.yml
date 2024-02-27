@@ -90,8 +90,8 @@ jobs:
     steps:
       - name: Check directory contents
         run: |
-          - ls -l C:/Users/manoj.varikela/openems/tools/docker/reverse-proxy
-          - cp C:/Users/manoj.varikela/openems/tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
+          - ls -l ./tools/docker/reverse-proxy
+          - cp ./tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
           - docker run -d -p 80:80 nginx
 
     
