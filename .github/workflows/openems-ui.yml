@@ -90,9 +90,7 @@ jobs:
     needs: docker
     steps:
       - name: Check directory contents
-        shell: bash
         run: 
-          - cp ./tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
           - docker run -d -p 80:80 nginx
 
     
