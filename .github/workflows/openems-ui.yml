@@ -2,6 +2,8 @@ name: Build OpenEMS Docker Image
 
 on:
   push:
+    branches:
+      - 'workflow/**'
     paths:
       - .github/workflows/openems-ui.yml
 
