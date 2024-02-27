@@ -38,6 +38,8 @@ COPY tools/docker/openems-ui/root/ /
 
 COPY tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
 
+COPY --chown=root:root tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
+
 VOLUME /etc/nginx
 VOLUME /var/log/nginx
 
