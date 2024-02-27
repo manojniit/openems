@@ -89,12 +89,11 @@ jobs:
     needs: docker
     steps:
       - name: Check directory contents
-        run: ls -l ./reverse-proxy/
-      - name: Copy Nginx configuration
-        run: cp tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
-      - name: Expose Reverse Proxy
-        run: docker run -d -p 80:80 nginx
-
+        run: |
+          - ls -l ./reverse-proxy/
+          - cp tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
+          - docker run -d -p 80:80 nginx
+        
     
  
 
