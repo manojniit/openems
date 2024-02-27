@@ -74,7 +74,7 @@ jobs:
             org.opencontainers.image.authors=manoj1210
             org.opencontainers.image.title=manoj1210 ${{ matrix.image }}
             org.opencontainers.image.vendor=manoj1210
-      
+
             
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
