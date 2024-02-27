@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/openems-ui.yml
+      - 'workflow/**'
 
       
 jobs:
