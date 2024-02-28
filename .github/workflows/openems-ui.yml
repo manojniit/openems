@@ -6,7 +6,7 @@ on:
       - .github/workflows/openems-ui.yml
       - 'workflow/**'
 
-      
+
 jobs:
   docker:
     runs-on: ubuntu-latest
