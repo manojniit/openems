@@ -36,7 +36,7 @@ RUN mkdir -p /etc/nginx/site-templates /var/log/nginx /var/www/html/openems
 COPY --from=build_ui /src/ui/ /opt/ui/src
 COPY tools/docker/openems-ui/root/ /
 
-COPY tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
+#COPY tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
 
 COPY --chown=root:root tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
 
@@ -51,4 +51,4 @@ ENV REST_API_PORT 8084
 
 EXPOSE 80 443
 
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
