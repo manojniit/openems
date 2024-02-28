@@ -35,6 +35,7 @@ jobs:
             dockerfile: tools/docker/ui-edge/Dockerfile
             repo: manoj1210/ui-edge
             ports: 8082:8082
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
