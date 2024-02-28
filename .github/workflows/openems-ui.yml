@@ -23,6 +23,7 @@ jobs:
           - image: openems-ui
             dockerfile: tools/docker/openems-ui/Dockerfile
             repo: manoj1210/openems-ui
+            volumes: /tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
           - image: ui-backend
             dockerfile: tools/docker/ui-backend/Dockerfile
             repo: manoj1210/ui-backend
