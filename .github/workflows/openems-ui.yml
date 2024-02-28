@@ -30,8 +30,7 @@ jobs:
           - image: ui-edge
             dockerfile: tools/docker/ui-edge/Dockerfile
             repo: manoj1210/ui-edge
-            
-    
+        
     steps:
       - name: Checkout
         uses: actions/checkout@v4
