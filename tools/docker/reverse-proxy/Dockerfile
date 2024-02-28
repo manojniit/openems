@@ -1,2 +1,2 @@
 FROM nginx
-COPY /tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
+COPY /tools/docker/reverse-proxy/nginx.conf /etc/nginx/nginx.conf
