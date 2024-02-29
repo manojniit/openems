@@ -2,7 +2,7 @@ version: "3"
 
 services:
   openems_backend:
-    image: manoj1210/openems-backend:latest
+    image: manoj1210/openems-backend:openems-docker
     container_name: openems_backend
     hostname: openems_backend
     restart: unless-stopped
@@ -15,9 +15,9 @@ services:
       - 8082:8082 # UI-Websocket
 
   openems-ui:
-    image: manoj1210/ui-backend:latest
-    container_name: openems_ui
-    hostname: openems_ui
+    image: manoj1210/ui-backend:openems-docker
+    container_name: ui-backend
+    hostname: ui-backend
     restart: unless-stopped
     volumes:
       - openems-ui-conf:/etc/nginx:rw
