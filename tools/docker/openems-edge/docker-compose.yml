@@ -1,18 +1,7 @@
 version: "3"
 
 services:
-
-  reverse-proxy:
-    image: nginx:latest
-    container_name: reverse_proxy
-    depends_on:
-        - openems-edge
-        - openems-ui
-    volumes:
-      - /nginx.conf:/etc/nginx/nginx.conf:ro
-    ports:
-      - 80:80
-      
+   
   openems-edge:
     image: manoj1210/openems-edge:openems-docker
     hostname: openems_edge
@@ -34,7 +23,7 @@ services:
       - openems-ui-log:/var/log/nginx:rw
       
     ports:
-      - 8003:80
+      - 80:80
       - 443:443
     
 
