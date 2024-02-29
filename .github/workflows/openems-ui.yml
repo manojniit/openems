@@ -28,9 +28,9 @@ jobs:
           - image: ui-edge
             dockerfile: tools/docker/openems-edge/ui-edge/Dockerfile
             repo: manoj1210/ui-edge
-      permissions:
-        packages: write
-        contents: read
+    permissions:
+      packages: write
+      contents: read
          
     steps:
       - name: Checkout
