@@ -23,8 +23,8 @@ services:
       - openems-ui-conf:/etc/nginx:rw
       - openems-ui-log:/var/log/nginx:rw
     ports:
-      - 80:80
-      - 443:443
+      - 8001:80
+      - 8002:443
 
   openems_influxdb:
     image: influxdb:alpine
