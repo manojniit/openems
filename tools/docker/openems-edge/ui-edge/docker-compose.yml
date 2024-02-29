@@ -2,7 +2,7 @@ version: "3"
 
 services:
   openems-edge:
-    image: manoj1210/openems-edge:latest
+    image: openems/edge:latest
     container_name: openems_edge
     hostname: openems_edge
     restart: unless-stopped
@@ -14,7 +14,7 @@ services:
       - 8085:8085 # UI-Websocket
 
   openems-ui:
-    image: manoj1210/ui-edge:latest
+    image: openems/edge-ui:latest
     container_name: openems_ui
     hostname: openems_ui
     restart: unless-stopped
