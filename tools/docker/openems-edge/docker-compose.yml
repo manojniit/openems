@@ -4,7 +4,7 @@ services:
 
   reverse-proxy:
     image: nginx:latest
-    container_name: reverse_proxy_demo
+    container_name: reverse_proxy
     depends_on:
         - openems-edge
         - openems-ui
