@@ -42,6 +42,8 @@ RUN mkdir -p /etc/nginx/site-templates /var/log/nginx /var/www/html/openems
 COPY --from=build_ui /src/ui/target /var/www/html/openems
 COPY tools/docker/openems-edge/ui-edge/root/ /
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 VOLUME /etc/nginx
 VOLUME /var/log/nginx
 
