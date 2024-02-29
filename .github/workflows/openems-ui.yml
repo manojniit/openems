@@ -23,7 +23,7 @@ jobs:
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manoj1210/openems-backend
           - image: ui-backend
-            dockerfile: tools/docker//openems-backend/ui-backend/Dockerfile
+            dockerfile: tools/docker/openems-backend/ui-backend/Dockerfile
             repo: manoj1210/ui-backend
           - image: ui-edge
             dockerfile: tools/docker/openems-edge/ui-edge/Dockerfile
