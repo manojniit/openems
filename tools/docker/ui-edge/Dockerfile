@@ -37,15 +37,17 @@ RUN apk add --no-cache \
 ## Build ui container
 FROM ui_base
 
-COPY --from=build_ui /src/ui/target /app/www
+COPY --from=build_ui /src/ui/target /var/www/html/openems
 COPY tools/docker/ui-edge/root/ /
 
-RUN mkdir -p /config /log
-
-VOLUME /config
-VOLUME /log
+VOLUME /etc/nginx
+VOLUME /var/log/nginx
 
 ARG HOST
 ARG WEBSOCKET_PORT
+
+ENV EDGE_HOST 127.0.0.1
+ENV EDGE_WEBSOCKET_PORT 8085
+ENV EDGE_REST_API_PORT 8084
 
 EXPOSE 80 443
