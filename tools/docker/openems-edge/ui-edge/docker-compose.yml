@@ -2,25 +2,25 @@ version: "3"
 
 services:
   openems-edge:
-    image: openems/edge:latest
-    container_name: openems_edge
-    hostname: openems_edge
+    image: manoj1210/openems-edge:latest
+    container_name: openems-edge
+    hostname: openems-edge
     restart: unless-stopped
     volumes:
-      - openems-edge-conf:/var/opt/openems/config:rw
-      - openems-edge-data:/var/opt/openems/data:rw
+      - openems-edge:/var/opt/openems/config:rw
+      - openems-edge:/var/opt/openems/data:rw
     ports:
       - 8080:8080 # Apache-Felix
       - 8085:8085 # UI-Websocket
 
-  openems-ui:
-    image: openems/edge-ui:latest
-    container_name: openems_ui
-    hostname: openems_ui
+  ui-edge:
+    image: manoj1210/ui-edge:latest
+    container_name: ui-edge
+    hostname: ui-edge
     restart: unless-stopped
     volumes:
-      - openems-ui-conf:/etc/nginx:rw
-      - openems-ui-log:/var/log/nginx:rw
+      - ui-edge-conf:/etc/nginx:rw
+      - ui-edge-log:/var/log/nginx:rw
     ports:
       - 80:80
       - 443:443
@@ -28,5 +28,5 @@ services:
 volumes:
   openems-edge-conf:
   openems-edge-data:
-  openems-ui-conf:
-  openems-ui-log:
+  ui-edge-conf:
+  ui-edge-log:
