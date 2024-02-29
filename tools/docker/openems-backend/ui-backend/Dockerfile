@@ -18,7 +18,7 @@ FROM --platform=$BUILDPLATFORM ui_builder AS build_ui
 ARG UI_VERSION
 
 COPY ./ /src
-COPY tools/docker/ui-backend/root /src
+#COPY tools/docker/ui-backend/root /src
 
 WORKDIR /src/ui
 RUN npm install
@@ -40,7 +40,7 @@ FROM ui_base
 RUN mkdir -p /etc/nginx /var/log/nginx /var/www/html/openems 
 
 COPY --from=build_ui /src/ui/target /var/www/html/openems
-COPY tools/docker/ui-backend/root/ /
+COPY tools/docker/openems-backend/ui-backend/root/ /
 
 VOLUME /etc/nginx
 VOLUME /var/log/nginx

@@ -18,7 +18,7 @@ FROM --platform=$BUILDPLATFORM ui_builder AS build_ui
 ARG UI_VERSION
 
 COPY ./ /src
-COPY  tools/docker/openems-edge/ui-edge/root /src
+#COPY  tools/docker/openems-edge/ui-edge/root /src
 
 WORKDIR /src/ui
 RUN npm install
@@ -37,8 +37,10 @@ RUN apk add --no-cache \
 ## Build ui container
 FROM ui_base
 
+RUN mkdir -p /etc/nginx/site-templates /var/log/nginx /var/www/html/openems
+
 COPY --from=build_ui /src/ui/target /var/www/html/openems
-COPY tools/docker/ui-edge/root/ /
+COPY tools/docker/openems-edge/ui-edge/root/ /
 
 VOLUME /etc/nginx
 VOLUME /var/log/nginx
