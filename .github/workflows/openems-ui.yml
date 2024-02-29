@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [openems-edge, openems-backend, openems-ui, ui-backend, ui-edge]
+        image: [openems-edge, openems-backend, ui-backend, ui-edge]
         include:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
@@ -22,16 +22,15 @@ jobs:
           - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
             repo: manoj1210/openems-backend
-          - image: openems-ui
-            dockerfile: tools/docker/openems-ui/Dockerfile
-            repo: manoj1210/openems-ui
-            #volumes: /tools/docker/openems-ui/nginx.conf /etc/nginx/nginx.conf
           - image: ui-backend
-            dockerfile: tools/docker/ui-backend/Dockerfile
+            dockerfile: tools/docker//openems-backend/ui-backend/Dockerfile
             repo: manoj1210/ui-backend
           - image: ui-edge
-            dockerfile: tools/docker/ui-edge/Dockerfile
+            dockerfile: tools/docker/openems-edge/ui-edge/Dockerfile
             repo: manoj1210/ui-edge
+      permissions:
+        packages: write
+        contents: read
          
     steps:
       - name: Checkout
