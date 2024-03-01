@@ -37,7 +37,7 @@ services:
       - edge-ui-log:/var/log/nginx:rw
       
     ports:
-      - 80:80
+      - 8005:80
       - 443:443
 
   openems_backend:
@@ -63,7 +63,7 @@ services:
       - backend-ui-log:/var/log/nginx:rw
     ports:
       - 8001:80
-      - 8002:443
+      - 443:443
 
   openems_influxdb:
     image: influxdb:alpine
