@@ -63,7 +63,7 @@ services:
       - backend-ui-log:/var/log/nginx:rw
     ports:
       - 8001:80
-      - 443:443
+      - 8002:443
 
   openems_influxdb:
     image: influxdb:alpine
