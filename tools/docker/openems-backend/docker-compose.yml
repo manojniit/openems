@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  openems_backend:
+  openems-backend:
     image: manoj1210/openems-backend:openems-docker
     container_name: openems_backend
     hostname: openems_backend
