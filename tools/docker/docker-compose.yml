@@ -15,7 +15,7 @@ services:
       - 80:80
 
   openems-edge:
-    image: manoj1210/openems-edge:openems-docker
+    image: manoj1210/openems-edge:openems-reverse-proxy
     hostname: openems_edge
     restart: unless-stopped
     volumes:
@@ -26,7 +26,7 @@ services:
       - 8085:8085 # UI-Websocket
 
   edge-ui:
-    image: manoj1210/ui-edge:openems-docker
+    image: manoj1210/ui-edge:openems-reverse-proxy
     container_name: ui_edge
     hostname: ui_edge
     restart: unless-stopped
@@ -39,7 +39,7 @@ services:
       - 443:443
 
   openems_backend:
-    image: manoj1210/openems-backend:openems-docker
+    image: manoj1210/openems-backend:openems-reverse-proxy
     container_name: openems_backend
     hostname: openems_backend
     restart: unless-stopped
@@ -52,7 +52,7 @@ services:
       - 8082:8082 # UI-Websocket
 
   backend-ui:
-    image: manoj1210/ui-backend:openems-docker
+    image: manoj1210/ui-backend:openems-reverse-proxy
     container_name: ui-backend
     hostname: ui-backend
     restart: unless-stopped
