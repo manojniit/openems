@@ -14,7 +14,7 @@ services:
       - 8081:8081 # Edge-Websocket
       - 8082:8082 # UI-Websocket
 
-  openems-ui:
+  ui-backend:
     image: manoj1210/ui-backend:openems-docker
     container_name: ui-backend
     hostname: ui-backend
