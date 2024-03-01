@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+   
+  reverse-proxy:
+    image: nginx:latest
+    container_name: reverse_proxy
+    depends_on:
+        - openems-edge
+        - openems-ui
+        
+    volumes:
+      - ./docker/reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  openems-edge:
+    image: manoj1210/openems-edge:openems-docker
+    hostname: openems_edge
+    restart: unless-stopped
+    volumes:
+      - openems-edge-conf:/var/opt/openems/config:rw
+      - openems-edge-data:/var/opt/openems/data:rw
+    ports:
+      - 8080:8080 # Apache-Felix
+      - 8085:8085 # UI-Websocket
+
+  openems-ui:
+    image: manoj1210/ui-edge:openems-docker
+    container_name: ui_edge
+    hostname: ui_edge
+    restart: unless-stopped
+    volumes:
+      - openems-ui-conf:/etc/nginx:rw
+      - openems-ui-log:/var/log/nginx:rw
+      
+    ports:
+      - 80:80
+      - 443:443
+    
+
+volumes:
+  openems-edge-conf:
+  openems-edge-data:
+  openems-ui-conf:
+  openems-ui-log:

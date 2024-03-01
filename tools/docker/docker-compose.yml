@@ -1,0 +1,86 @@
+version: "3"
+
+services:
+   
+  reverse-proxy:
+    image: nginx:latest
+    container_name: reverse_proxy
+    depends_on:
+        - openems-edge
+        - openems-ui
+        
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  openems-edge:
+    image: manoj1210/openems-edge:openems-docker
+    hostname: openems_edge
+    restart: unless-stopped
+    volumes:
+      - openems-edge-conf:/var/opt/openems/config:rw
+      - openems-edge-data:/var/opt/openems/data:rw
+    ports:
+      - 8080:8080 # Apache-Felix
+      - 8085:8085 # UI-Websocket
+
+  edge-ui:
+    image: manoj1210/ui-edge:openems-docker
+    container_name: ui_edge
+    hostname: ui_edge
+    restart: unless-stopped
+    volumes:
+      - edge-ui-conf:/etc/nginx:rw
+      - edge-ui-log:/var/log/nginx:rw
+      
+    ports:
+      - 80:80
+      - 443:443
+
+  openems_backend:
+    image: manoj1210/openems-backend:openems-docker
+    container_name: openems_backend
+    hostname: openems_backend
+    restart: unless-stopped
+    volumes:
+      - openems-backend-conf:/var/opt/openems/config:rw
+      - openems-backend-data:/var/opt/openems/data:rw
+    ports:
+      - 8079:8079 # Apache-Felix
+      - 8081:8081 # Edge-Websocket
+      - 8082:8082 # UI-Websocket
+
+  backend-ui:
+    image: manoj1210/ui-backend:openems-docker
+    container_name: ui-backend
+    hostname: ui-backend
+    restart: unless-stopped
+    volumes:
+      - backend-ui-conf:/etc/nginx:rw
+      - backend-ui-log:/var/log/nginx:rw
+    ports:
+      - 8001:80
+      - 8002:443
+
+  openems_influxdb:
+    image: influxdb:alpine
+    container_name: openems_influxdb
+    hostname: openems_influxdb
+    restart: unless-stopped
+    volumes:
+      - openems-influxdb:/var/lib/influxdb2:rw
+    ports:
+      - 8086:8086
+    
+
+volumes:
+  openems-edge-conf:
+  openems-edge-data:
+  edge-ui-conf:
+  edge-ui-log:
+  openems-backend-conf:
+  openems-backend-data:
+  backend-ui-conf:
+  backend-ui-log:
+  openems-influxdb:
