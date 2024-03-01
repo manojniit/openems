@@ -7,7 +7,9 @@ services:
     container_name: reverse_proxy
     depends_on:
         - openems-edge
-        - openems-ui
+        - edge-ui
+        - openems_backend
+        - backend-ui
         
     volumes:
       - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
