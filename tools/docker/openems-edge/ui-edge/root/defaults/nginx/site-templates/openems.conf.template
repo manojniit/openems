@@ -28,10 +28,6 @@ server {
 		proxy_set_header Connection	"upgrade";
 	}
 
-	        
-
-		
-	
 	location /ui-backend {
 		proxy_pass          http://ui-backend:8082/;
 		proxy_set_header    X-Forwarded-For \$remote_addr;
