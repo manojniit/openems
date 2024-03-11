@@ -83,6 +83,6 @@ jobs:
           file: ${{ matrix.dockerfile }}
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags | join(', ')}}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: ${{ matrix.args }}          
