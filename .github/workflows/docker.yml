@@ -63,12 +63,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            openems/${{ matrix.image }}
-            ghcr.io/openems/${{ matrix.image }}
+            ${{ matrix.repo }}
           labels: |
-            org.opencontainers.image.authors=OpenEMS
-            org.opencontainers.image.title=OpenEMS ${{ matrix.image }}
-            org.opencontainers.image.vendor=OpenEMS <openems.io>
+            org.opencontainers.image.authors=manoj1210
+            org.opencontainers.image.title=manoj1210 ${{ matrix.image }}
+            org.opencontainers.image.vendor=manoj1210
           #tags: |
           #  type=semver,pattern={{version}}
           #  type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
