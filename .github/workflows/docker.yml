@@ -3,8 +3,9 @@ name: Build OpenEMS Docker Image
 on:
   push:
     paths:
-      - .github/workflows/openems-ui.yml
-    
+      - .github/workflows/docker.yml
+
+
 jobs:
   docker:
     runs-on: ubuntu-latest
