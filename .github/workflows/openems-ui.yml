@@ -2,46 +2,48 @@ name: Build OpenEMS Docker Image
 
 on:
   push:
-    branches:
-      - develop
-      - main
-    tags:
-      - "*.*.*"
-    
+    paths:
+      - .github/workflows/openems-ui.yml
+      - 'workflow/**'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        image: [edge, backend, ui-edge, ui-backend]
+        image: [openems-edge, openems-backend, ui-backend, ui-edge]
         include:
-          - image: edge
-            dockerfile: tools/docker/edge/Dockerfile
+          - image: openems-edge
+            dockerfile: tools/docker/openems-edge/Dockerfile
+            repo: manoj1210/openems-edge
             args: ""
-          - image: ui-edge
-            dockerfile: tools/docker/ui/Dockerfile
-            args: "VERSION=openems,openems-edge-docker"
-          - image: backend
-            dockerfile: tools/docker/backend/Dockerfile
+          - image: openems-backend
+            dockerfile: tools/docker/openems-backend/Dockerfile
+            repo: manoj1210/openems-backend
             args: ""
           - image: ui-backend
             dockerfile: tools/docker/ui/Dockerfile
+            repo: manoj1210/ui-backend
             args: "VERSION=openems,openems-backend-docker"
+          - image: ui-edge
+            dockerfile: tools/docker/ui/Dockerfile
+            repo: manoj1210/ui-edge
+            args: "VERSION=openems,openems-edge-docker"
     permissions:
-        packages: write
-        contents: read
-
+      packages: write
+      contents: read
+             
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        
+
       - name: Get cleaned branch name
         id: clean_name
         run: |
@@ -58,24 +60,19 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.REPOSITORY_OWNER }}
+           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: |
-            openems/${{ matrix.image }}
-            ghcr.io/openems/${{ matrix.image }}
+          mages: |
+            ${{ matrix.repo }}
           labels: |
-            org.opencontainers.image.authors=OpenEMS
-            org.opencontainers.image.title=OpenEMS ${{ matrix.image }}
-            org.opencontainers.image.vendor=OpenEMS <openems.io>
-          tags: |
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-            type=raw,value=develop,enable=${{ github.ref == 'refs/heads/develop' }}
+            org.opencontainers.image.authors=manoj1210
+            org.opencontainers.image.title=manoj1210 ${{ matrix.image }}
+            org.opencontainers.image.vendor=manoj1210
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
@@ -85,4 +82,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: ${{ matrix.args }}          
+ 
+ 
+
+
+    
