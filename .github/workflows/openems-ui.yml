@@ -19,15 +19,19 @@ jobs:
         include:
           - image: openems-edge
             dockerfile: tools/docker/openems-edge/Dockerfile
+            repo: manoj1210/openems-edge
             args: ""
           - image: openems-backend
             dockerfile: tools/docker/openems-backend/Dockerfile
+            repo: manoj1210/openems-backend
             args: ""
           - image: ui-backend
             dockerfile: tools/docker/ui/Dockerfile
+            repo: manoj1210/ui-backend
             args: "VERSION=openems,openems-backend-docker"
           - image: ui-edge
             dockerfile: tools/docker/ui/Dockerfile
+            repo: manoj1210/ui-edge
             args: "VERSION=openems,openems-edge-docker"
     permissions:
       packages: write
