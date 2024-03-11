@@ -2,8 +2,8 @@ name: Build OpenEMS Docker Image
 
 on:
   push:
-    paths:
-    - .github/workflows/openems-ui.yml
+     paths:
+      - .github/workflows/openems-ui.yml
     
 jobs:
   docker:
@@ -12,19 +12,19 @@ jobs:
       fail-fast: true
       matrix:
         image: [edge, backend, ui-edge, ui-backend]
-        include:
-          - image: edge
-            dockerfile: tools/docker/edge/Dockerfile
-            args: ""
-          - image: ui-edge
-            dockerfile: tools/docker/ui/Dockerfile
-            args: "VERSION=openems,openems-edge-docker"
-          - image: backend
-            dockerfile: tools/docker/backend/Dockerfile
-            args: ""
-          - image: ui-backend
-            dockerfile: tools/docker/ui/Dockerfile
-            args: "VERSION=openems,openems-backend-docker"
+      include:
+        - image: edge
+          dockerfile: tools/docker/edge/Dockerfile
+          args: ""
+        - image: ui-edge
+          dockerfile: tools/docker/ui/Dockerfile
+          args: "VERSION=openems,openems-edge-docker"
+        - image: backend
+          dockerfile: tools/docker/backend/Dockerfile
+          args: ""
+        - image: ui-backend
+          dockerfile: tools/docker/ui/Dockerfile
+          args: "VERSION=openems,openems-backend-docker"
     permissions:
       packages: write
       contents: read
@@ -70,7 +70,7 @@ jobs:
             org.opencontainers.image.title=OpenEMS ${{ matrix.image }}
             org.opencontainers.image.vendor=OpenEMS <openems.io>
           tags: |
-            type=semver,pattern={{version}}
+            type=semver,pattern={{version}},value=openems/${{ matrix.image }}:{{version}}
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
             type=raw,value=develop,enable=${{ github.ref == 'refs/heads/develop' }}
 
@@ -80,8 +80,6 @@ jobs:
           file: ${{ matrix.dockerfile }}
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: |
-            openems/${{ matrix.image }}:${{ steps.meta.outputs.tags }}
-            ghcr.io/openems/${{ matrix.image }}:${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: ${{ matrix.args }}
